@@ -1,0 +1,516 @@
+/* ============================================================
+   OMNITRIX LAB — Custom Theme CSS
+   Dark sci-fi theme with neon green (#39ff14) accents
+   ============================================================ */
+
+/* ---------- Google Fonts ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+/* ---------- Root Variables ---------- */
+:root {
+    --bg-dark: #0a0f0a;
+    --bg-card: rgba(16, 24, 16, 0.85);
+    --neon: #39ff14;
+    --neon-dim: #1a8a0a;
+    --neon-glow: 0 0 10px #39ff14, 0 0 20px #39ff1488, 0 0 40px #39ff1444;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --danger: #ff4444;
+    --warning: #ffaa00;
+    --font-heading: 'Orbitron', sans-serif;
+    --font-body: 'Rajdhani', sans-serif;
+    --glass-bg: rgba(16, 24, 16, 0.65);
+    --glass-border: rgba(57, 255, 20, 0.25);
+    --radius: 16px;
+}
+
+/* ---------- Hide Unwanted Streamlit Defaults (Keep Sidebar Toggle) ---------- */
+#MainMenu {
+    visibility: hidden !important;
+}
+
+footer {
+    visibility: hidden !important;
+    display: none !important;
+}
+
+.stDeployButton {
+    display: none !important;
+}
+
+div[data-testid="stDecoration"] {
+    display: none !important;
+}
+
+/* Keep header transparent so sidebar toggle button is always accessible */
+header,
+div[data-testid="stHeader"] {
+    background: transparent !important;
+    visibility: visible !important;
+    z-index: 999999 !important;
+}
+
+/* Style the sidebar expand/collapse button with Omnitrix neon green glow */
+div[data-testid="collapsedControl"],
+button[data-testid="stSidebarCollapseButton"],
+div[data-testid="stSidebarCollapsedControl"],
+section[data-testid="stSidebar"] button[data-testid="stSidebarCollapseButton"] {
+    visibility: visible !important;
+    display: inline-flex !important;
+    color: var(--neon) !important;
+    background: rgba(16, 24, 16, 0.9) !important;
+    border: 1px solid var(--neon) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 0 12px rgba(57, 255, 20, 0.6) !important;
+    transition: all 0.25s ease !important;
+}
+
+div[data-testid="collapsedControl"]:hover,
+button[data-testid="stSidebarCollapseButton"]:hover {
+    background: var(--neon) !important;
+    color: #0a0f0a !important;
+    box-shadow: 0 0 20px #39ff14 !important;
+}
+
+div[data-testid="collapsedControl"] svg,
+button[data-testid="stSidebarCollapseButton"] svg {
+    color: var(--neon) !important;
+    fill: var(--neon) !important;
+    stroke: var(--neon) !important;
+}
+
+div[data-testid="collapsedControl"]:hover svg,
+button[data-testid="stSidebarCollapseButton"]:hover svg {
+    color: #0a0f0a !important;
+    fill: #0a0f0a !important;
+    stroke: #0a0f0a !important;
+}
+
+/* ---------- Global Body ---------- */
+.stApp {
+    background-color: var(--bg-dark) !important;
+    color: var(--text-primary) !important;
+    font-family: var(--font-body) !important;
+}
+
+html,
+body,
+[data-testid="stAppViewContainer"] {
+    background-color: var(--bg-dark) !important;
+}
+
+/* ---------- Animated Gradient Header ---------- */
+.main-header {
+    background: linear-gradient(135deg, #0a0f0a 0%, #0d1a0d 25%, #0a0f0a 50%, #112211 75%, #0a0f0a 100%);
+    background-size: 300% 300%;
+    animation: gradientShift 8s ease infinite;
+    padding: 2rem 2rem 1.5rem 2rem;
+    border-bottom: 2px solid var(--neon);
+    box-shadow: var(--neon-glow);
+    margin-bottom: 2rem;
+    border-radius: 0 0 var(--radius) var(--radius);
+    text-align: center;
+}
+
+.main-header h1 {
+    font-family: var(--font-heading) !important;
+    color: var(--neon) !important;
+    font-size: 2.8rem !important;
+    letter-spacing: 6px;
+    text-shadow: 0 0 20px #39ff14, 0 0 40px #39ff1488;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.main-header p {
+    color: var(--text-secondary) !important;
+    font-family: var(--font-body) !important;
+    font-size: 1.1rem !important;
+    margin-top: 0.3rem !important;
+    letter-spacing: 3px;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ---------- Page Fade-In ---------- */
+.fade-in {
+    animation: fadeIn 0.7s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- Glassmorphism Card ---------- */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--neon-glow);
+    border-color: var(--neon);
+}
+
+/* ---------- KPI Metric Card ---------- */
+.kpi-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 1.3rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.kpi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--neon-glow);
+}
+
+.kpi-card .kpi-value {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--neon);
+    text-shadow: 0 0 10px #39ff1488;
+}
+
+.kpi-card .kpi-label {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 0.3rem;
+}
+
+/* ---------- Alien Card (Vault) ---------- */
+.alien-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    min-height: 300px;
+}
+
+.alien-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 0 15px #39ff14, 0 0 30px #39ff1466;
+    border-color: var(--neon);
+}
+
+.alien-card .alien-emoji {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.alien-card .alien-svg-box {
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.alien-card .alien-svg-box svg {
+    max-width: 135px;
+    max-height: 135px;
+}
+
+.alien-card .alien-name {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--neon);
+    letter-spacing: 2px;
+    margin-bottom: 0.3rem;
+}
+
+.alien-card .alien-type {
+    display: inline-block;
+    background: rgba(57, 255, 20, 0.15);
+    color: var(--neon);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    padding: 3px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--neon-dim);
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.alien-card .alien-planet {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 0.7rem;
+}
+
+.alien-card .stat-bar-container {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    height: 10px;
+    margin: 4px 0;
+    overflow: hidden;
+}
+
+.alien-card .stat-bar {
+    height: 100%;
+    border-radius: 6px;
+    background: linear-gradient(90deg, var(--neon-dim), var(--neon));
+    box-shadow: 0 0 6px #39ff1466;
+    transition: width 0.6s ease;
+}
+
+.alien-card .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ---------- Sidebar ---------- */
+section[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #0a0f0a 0%, #0d1a0d 100%) !important;
+    border-right: 2px solid var(--neon-dim) !important;
+}
+
+section[data-testid="stSidebar"] .stRadio>label {
+    font-family: var(--font-heading) !important;
+    color: var(--neon) !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 2px !important;
+}
+
+section[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label {
+    font-family: var(--font-body) !important;
+    color: var(--text-primary) !important;
+    font-size: 1rem !important;
+    padding: 0.5rem 0.8rem !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+}
+
+section[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label:hover {
+    background: rgba(57, 255, 20, 0.1) !important;
+    color: var(--neon) !important;
+}
+
+section[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label[data-checked="true"],
+section[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label[aria-checked="true"] {
+    background: rgba(57, 255, 20, 0.15) !important;
+    border-left: 3px solid var(--neon) !important;
+}
+
+/* ---------- Streamlit Widgets Overrides ---------- */
+.stSelectbox label,
+.stMultiSelect label,
+.stSlider label,
+.stRadio>label,
+.stCheckbox label,
+.stTextInput label,
+.stNumberInput label,
+.stFileUploader label,
+.stTextArea label {
+    font-family: var(--font-body) !important;
+    color: var(--text-primary) !important;
+}
+
+.stButton>button {
+    font-family: var(--font-heading) !important;
+    background: transparent !important;
+    color: var(--neon) !important;
+    border: 2px solid var(--neon) !important;
+    border-radius: 10px !important;
+    padding: 0.5rem 1.5rem !important;
+    letter-spacing: 2px !important;
+    font-size: 0.9rem !important;
+    transition: all 0.3s ease !important;
+    text-transform: uppercase !important;
+}
+
+.stButton>button:hover {
+    background: var(--neon) !important;
+    color: #0a0f0a !important;
+    box-shadow: var(--neon-glow) !important;
+    transform: translateY(-2px) !important;
+}
+
+.stButton>button:active {
+    transform: translateY(1px) !important;
+}
+
+div[data-testid="stMetric"] {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 1rem;
+}
+
+div[data-testid="stMetric"] label {
+    color: var(--text-secondary) !important;
+    font-family: var(--font-body) !important;
+}
+
+div[data-testid="stMetric"] div[data-testid="stMetricValue"] {
+    color: var(--neon) !important;
+    font-family: var(--font-heading) !important;
+}
+
+/* ---------- Tabs ---------- */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 8px;
+}
+
+.stTabs [data-baseweb="tab"] {
+    font-family: var(--font-heading) !important;
+    color: var(--text-secondary) !important;
+    letter-spacing: 1px !important;
+    border-radius: 8px 8px 0 0 !important;
+}
+
+.stTabs [aria-selected="true"] {
+    color: var(--neon) !important;
+    border-bottom: 2px solid var(--neon) !important;
+}
+
+/* ---------- DataFrames / Tables ---------- */
+.stDataFrame {
+    border: 1px solid var(--glass-border) !important;
+    border-radius: var(--radius) !important;
+}
+
+/* ---------- Section Title ---------- */
+.section-title {
+    font-family: var(--font-heading);
+    color: var(--neon);
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+    border-bottom: 1px solid var(--neon-dim);
+    padding-bottom: 0.5rem;
+    margin: 1.5rem 0 1rem 0;
+    text-transform: uppercase;
+}
+
+/* ---------- Tag / Badge ---------- */
+.tag {
+    display: inline-block;
+    background: rgba(57, 255, 20, 0.12);
+    color: var(--neon);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    padding: 2px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--neon-dim);
+    margin: 2px 4px;
+}
+
+/* ---------- Health Bar (Arena) ---------- */
+.health-bar-outer {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    height: 22px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+}
+
+.health-bar-inner {
+    height: 100%;
+    border-radius: 8px;
+    transition: width 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    color: #0a0f0a;
+    font-weight: 700;
+}
+
+.health-green {
+    background: linear-gradient(90deg, #1a8a0a, #39ff14);
+}
+
+.health-yellow {
+    background: linear-gradient(90deg, #cc8800, #ffaa00);
+}
+
+.health-red {
+    background: linear-gradient(90deg, #aa0000, #ff4444);
+}
+
+/* ---------- Responsive: Mobile ---------- */
+@media (max-width: 768px) {
+    .main-header h1 {
+        font-size: 1.6rem !important;
+        letter-spacing: 3px;
+    }
+
+    .main-header p {
+        font-size: 0.85rem !important;
+    }
+
+    .glass-card,
+    .alien-card,
+    .kpi-card {
+        padding: 1rem;
+    }
+
+    .alien-card .alien-emoji {
+        font-size: 2.5rem;
+    }
+
+    .alien-card .alien-name {
+        font-size: 1rem;
+    }
+
+    .kpi-card .kpi-value {
+        font-size: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-header h1 {
+        font-size: 1.2rem !important;
+        letter-spacing: 2px;
+    }
+
+    .main-header {
+        padding: 1rem;
+    }
+}
